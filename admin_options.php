@@ -35,7 +35,7 @@
                     <th><a href='admin_delete_subject.php'>link</a></th>
                 </tr>
                 <tr>
-                    <th>DELETE MODULE</th>
+                    <th>DELETE NOTES AND IMPORTANT QUESTIONS</th>
                     <th><a href='admin_delete_module.php'>link</a></th>
                 </tr>
                 <tr>

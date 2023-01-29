@@ -26,6 +26,22 @@
                     <th>INSERT VIDEOS AND LECTURES</th>
                     <th><a href='admin_add_videos.php'>link</a></th>
                 </tr>
+                <tr>
+                    <th>DELETE USER</th>
+                    <th><a href='admin_delete_user.php'>link</a></th>
+                </tr>
+                <tr>
+                    <th>DELETE SUBJECT</th>
+                    <th><a href='admin_delete_subject.php'>link</a></th>
+                </tr>
+                <tr>
+                    <th>DELETE MODULE</th>
+                    <th><a href='admin_delete_module.php'>link</a></th>
+                </tr>
+                <tr>
+                    <th>DELETE PREVIOUS YEAR PAPER</th>
+                    <th><a href='admin_delete_pyq.php'>link</a></th>
+                </tr>
             </table>
             <br>
             <h2>VIEW MODIFICATIONS</h2>

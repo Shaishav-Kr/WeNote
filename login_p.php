@@ -14,7 +14,7 @@ if (!$conn) {
     if (is_array($row)) {
 
         $_SESSION["email"] = $row['email'];
-        if($row['email']=="shaishavpatna@gmail.com"){
+        if ($row['email'] == "shaishavpatna@gmail.com") {
             echo "<script>
         alert('Admin Login successfull');
         window.location.href='admin_options.php';

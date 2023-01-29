@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 29, 2023 at 06:00 AM
+-- Generation Time: Jan 29, 2023 at 08:37 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -29,12 +29,15 @@ USE `course_selection`;
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `password` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -42,27 +45,6 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`) VALUES
 (1, 'abcd', 'abcd@gmail.com', 'pbkdf2:sha256:260000$73o17xzi3DycfdFd$073223374c693a630384bddbb9cdf2368e413f24da4505060783ca52595e577a');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Database: `phpmyadmin`
 --
@@ -75,12 +57,14 @@ USE `phpmyadmin`;
 -- Table structure for table `pma__bookmark`
 --
 
-CREATE TABLE `pma__bookmark` (
-  `id` int UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `pma__bookmark`;
+CREATE TABLE IF NOT EXISTS `pma__bookmark` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `dbase` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `user` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `label` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `query` text COLLATE utf8mb3_bin NOT NULL
+  `query` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Bookmarks';
 
 -- --------------------------------------------------------
@@ -89,7 +73,8 @@ CREATE TABLE `pma__bookmark` (
 -- Table structure for table `pma__central_columns`
 --
 
-CREATE TABLE `pma__central_columns` (
+DROP TABLE IF EXISTS `pma__central_columns`;
+CREATE TABLE IF NOT EXISTS `pma__central_columns` (
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `col_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `col_type` varchar(64) COLLATE utf8mb3_bin NOT NULL,
@@ -97,7 +82,8 @@ CREATE TABLE `pma__central_columns` (
   `col_collation` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `col_isNull` tinyint(1) NOT NULL,
   `col_extra` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `col_default` text COLLATE utf8mb3_bin
+  `col_default` text COLLATE utf8mb3_bin,
+  PRIMARY KEY (`db_name`,`col_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Central list of columns';
 
 -- --------------------------------------------------------
@@ -106,8 +92,9 @@ CREATE TABLE `pma__central_columns` (
 -- Table structure for table `pma__column_info`
 --
 
-CREATE TABLE `pma__column_info` (
-  `id` int UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `pma__column_info`;
+CREATE TABLE IF NOT EXISTS `pma__column_info` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `column_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
@@ -116,7 +103,9 @@ CREATE TABLE `pma__column_info` (
   `transformation` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `transformation_options` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `input_transformation` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `input_transformation_options` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
+  `input_transformation_options` varchar(255) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Column information for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -125,9 +114,11 @@ CREATE TABLE `pma__column_info` (
 -- Table structure for table `pma__designer_settings`
 --
 
-CREATE TABLE `pma__designer_settings` (
+DROP TABLE IF EXISTS `pma__designer_settings`;
+CREATE TABLE IF NOT EXISTS `pma__designer_settings` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `settings_data` text COLLATE utf8mb3_bin NOT NULL
+  `settings_data` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Settings related to Designer';
 
 -- --------------------------------------------------------
@@ -136,13 +127,16 @@ CREATE TABLE `pma__designer_settings` (
 -- Table structure for table `pma__export_templates`
 --
 
-CREATE TABLE `pma__export_templates` (
-  `id` int UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `pma__export_templates`;
+CREATE TABLE IF NOT EXISTS `pma__export_templates` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `export_type` varchar(10) COLLATE utf8mb3_bin NOT NULL,
   `template_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `template_data` text COLLATE utf8mb3_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Saved export templates';
+  `template_data` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Saved export templates';
 
 --
 -- Dumping data for table `pma__export_templates`
@@ -158,9 +152,11 @@ INSERT INTO `pma__export_templates` (`id`, `username`, `export_type`, `template_
 -- Table structure for table `pma__favorite`
 --
 
-CREATE TABLE `pma__favorite` (
+DROP TABLE IF EXISTS `pma__favorite`;
+CREATE TABLE IF NOT EXISTS `pma__favorite` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `tables` text COLLATE utf8mb3_bin NOT NULL
+  `tables` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Favorite tables';
 
 -- --------------------------------------------------------
@@ -169,13 +165,16 @@ CREATE TABLE `pma__favorite` (
 -- Table structure for table `pma__history`
 --
 
-CREATE TABLE `pma__history` (
-  `id` bigint UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `pma__history`;
+CREATE TABLE IF NOT EXISTS `pma__history` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `sqlquery` text COLLATE utf8mb3_bin NOT NULL
+  `sqlquery` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `username` (`username`,`db`,`table`,`timevalue`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='SQL history for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -184,12 +183,14 @@ CREATE TABLE `pma__history` (
 -- Table structure for table `pma__navigationhiding`
 --
 
-CREATE TABLE `pma__navigationhiding` (
+DROP TABLE IF EXISTS `pma__navigationhiding`;
+CREATE TABLE IF NOT EXISTS `pma__navigationhiding` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `item_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `item_type` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL
+  `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Hidden items of navigation tree';
 
 -- --------------------------------------------------------
@@ -198,10 +199,13 @@ CREATE TABLE `pma__navigationhiding` (
 -- Table structure for table `pma__pdf_pages`
 --
 
-CREATE TABLE `pma__pdf_pages` (
+DROP TABLE IF EXISTS `pma__pdf_pages`;
+CREATE TABLE IF NOT EXISTS `pma__pdf_pages` (
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `page_nr` int UNSIGNED NOT NULL,
-  `page_descr` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT ''
+  `page_nr` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `page_descr` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`page_nr`),
+  KEY `db_name` (`db_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='PDF relation pages for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -210,9 +214,11 @@ CREATE TABLE `pma__pdf_pages` (
 -- Table structure for table `pma__recent`
 --
 
-CREATE TABLE `pma__recent` (
+DROP TABLE IF EXISTS `pma__recent`;
+CREATE TABLE IF NOT EXISTS `pma__recent` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `tables` text COLLATE utf8mb3_bin NOT NULL
+  `tables` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Recently accessed tables';
 
 --
@@ -220,7 +226,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"wenote\",\"table\":\"module\"},{\"db\":\"wenote\",\"table\":\"videos\"},{\"db\":\"wenote\",\"table\":\"pyq\"},{\"db\":\"wenote\",\"table\":\"mod_vid\"},{\"db\":\"wenote\",\"table\":\"subject\"},{\"db\":\"wenote\",\"table\":\"user\"},{\"db\":\"wenote\",\"table\":\"video\"},{\"db\":\"wenote\",\"table\":\"test\"},{\"db\":\"wenote\",\"table\":\"admin\"},{\"db\":\"course_selection\",\"table\":\"user\"}]');
+('root', '[{\"db\":\"wenote\",\"table\":\"mod_vid\"},{\"db\":\"wenote\",\"table\":\"module\"},{\"db\":\"wenote\",\"table\":\"videos\"},{\"db\":\"wenote\",\"table\":\"pyq\"},{\"db\":\"wenote\",\"table\":\"subject\"},{\"db\":\"wenote\",\"table\":\"user\"},{\"db\":\"wenote\",\"table\":\"video\"},{\"db\":\"wenote\",\"table\":\"test\"},{\"db\":\"wenote\",\"table\":\"admin\"},{\"db\":\"course_selection\",\"table\":\"user\"}]');
 
 -- --------------------------------------------------------
 
@@ -228,13 +234,16 @@ INSERT INTO `pma__recent` (`username`, `tables`) VALUES
 -- Table structure for table `pma__relation`
 --
 
-CREATE TABLE `pma__relation` (
+DROP TABLE IF EXISTS `pma__relation`;
+CREATE TABLE IF NOT EXISTS `pma__relation` (
   `master_db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `master_table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `master_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `foreign_db` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `foreign_table` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
+  `foreign_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`master_db`,`master_table`,`master_field`),
+  KEY `foreign_field` (`foreign_db`,`foreign_table`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Relation table';
 
 -- --------------------------------------------------------
@@ -243,12 +252,15 @@ CREATE TABLE `pma__relation` (
 -- Table structure for table `pma__savedsearches`
 --
 
-CREATE TABLE `pma__savedsearches` (
-  `id` int UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `pma__savedsearches`;
+CREATE TABLE IF NOT EXISTS `pma__savedsearches` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `search_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `search_data` text COLLATE utf8mb3_bin NOT NULL
+  `search_data` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Saved searches';
 
 -- --------------------------------------------------------
@@ -257,12 +269,14 @@ CREATE TABLE `pma__savedsearches` (
 -- Table structure for table `pma__table_coords`
 --
 
-CREATE TABLE `pma__table_coords` (
+DROP TABLE IF EXISTS `pma__table_coords`;
+CREATE TABLE IF NOT EXISTS `pma__table_coords` (
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `pdf_page_number` int NOT NULL DEFAULT '0',
   `x` float UNSIGNED NOT NULL DEFAULT '0',
-  `y` float UNSIGNED NOT NULL DEFAULT '0'
+  `y` float UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
 
 -- --------------------------------------------------------
@@ -271,10 +285,12 @@ CREATE TABLE `pma__table_coords` (
 -- Table structure for table `pma__table_info`
 --
 
-CREATE TABLE `pma__table_info` (
+DROP TABLE IF EXISTS `pma__table_info`;
+CREATE TABLE IF NOT EXISTS `pma__table_info` (
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
   `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
-  `display_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT ''
+  `display_field` varchar(64) COLLATE utf8mb3_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`db_name`,`table_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Table information for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -283,12 +299,14 @@ CREATE TABLE `pma__table_info` (
 -- Table structure for table `pma__table_uiprefs`
 --
 
-CREATE TABLE `pma__table_uiprefs` (
+DROP TABLE IF EXISTS `pma__table_uiprefs`;
+CREATE TABLE IF NOT EXISTS `pma__table_uiprefs` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `prefs` text COLLATE utf8mb3_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`username`,`db_name`,`table_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Tables'' UI preferences';
 
 -- --------------------------------------------------------
@@ -297,7 +315,8 @@ CREATE TABLE `pma__table_uiprefs` (
 -- Table structure for table `pma__tracking`
 --
 
-CREATE TABLE `pma__tracking` (
+DROP TABLE IF EXISTS `pma__tracking`;
+CREATE TABLE IF NOT EXISTS `pma__tracking` (
   `db_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `table_name` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `version` int UNSIGNED NOT NULL,
@@ -307,7 +326,8 @@ CREATE TABLE `pma__tracking` (
   `schema_sql` text COLLATE utf8mb3_bin,
   `data_sql` longtext COLLATE utf8mb3_bin,
   `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8mb3_bin DEFAULT NULL,
-  `tracking_active` int UNSIGNED NOT NULL DEFAULT '1'
+  `tracking_active` int UNSIGNED NOT NULL DEFAULT '1',
+  PRIMARY KEY (`db_name`,`table_name`,`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Database changes tracking for phpMyAdmin';
 
 -- --------------------------------------------------------
@@ -316,10 +336,12 @@ CREATE TABLE `pma__tracking` (
 -- Table structure for table `pma__userconfig`
 --
 
-CREATE TABLE `pma__userconfig` (
+DROP TABLE IF EXISTS `pma__userconfig`;
+CREATE TABLE IF NOT EXISTS `pma__userconfig` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `config_data` text COLLATE utf8mb3_bin NOT NULL
+  `config_data` text COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='User preferences storage for phpMyAdmin';
 
 --
@@ -327,7 +349,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-01-29 06:00:02', '{\"Console\\/Mode\":\"collapse\",\"Console\\/Height\":105.99419}');
+('root', '2023-01-29 08:36:56', '{\"Console\\/Mode\":\"collapse\",\"Console\\/Height\":105.99419}');
 
 -- --------------------------------------------------------
 
@@ -335,10 +357,12 @@ INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
 -- Table structure for table `pma__usergroups`
 --
 
-CREATE TABLE `pma__usergroups` (
+DROP TABLE IF EXISTS `pma__usergroups`;
+CREATE TABLE IF NOT EXISTS `pma__usergroups` (
   `usergroup` varchar(64) COLLATE utf8mb3_bin NOT NULL,
   `tab` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `allowed` enum('Y','N') COLLATE utf8mb3_bin NOT NULL DEFAULT 'N'
+  `allowed` enum('Y','N') COLLATE utf8mb3_bin NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`usergroup`,`tab`,`allowed`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='User groups with configured menu items';
 
 -- --------------------------------------------------------
@@ -347,174 +371,12 @@ CREATE TABLE `pma__usergroups` (
 -- Table structure for table `pma__users`
 --
 
-CREATE TABLE `pma__users` (
+DROP TABLE IF EXISTS `pma__users`;
+CREATE TABLE IF NOT EXISTS `pma__users` (
   `username` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `usergroup` varchar(64) COLLATE utf8mb3_bin NOT NULL
+  `usergroup` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`username`,`usergroup`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='Users and their assignments to user groups';
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pma__central_columns`
---
-ALTER TABLE `pma__central_columns`
-  ADD PRIMARY KEY (`db_name`,`col_name`);
-
---
--- Indexes for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
-
---
--- Indexes for table `pma__designer_settings`
---
-ALTER TABLE `pma__designer_settings`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
-
---
--- Indexes for table `pma__favorite`
---
-ALTER TABLE `pma__favorite`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__history`
---
-ALTER TABLE `pma__history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
-
---
--- Indexes for table `pma__navigationhiding`
---
-ALTER TABLE `pma__navigationhiding`
-  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  ADD PRIMARY KEY (`page_nr`),
-  ADD KEY `db_name` (`db_name`);
-
---
--- Indexes for table `pma__recent`
---
-ALTER TABLE `pma__recent`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__relation`
---
-ALTER TABLE `pma__relation`
-  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
-
---
--- Indexes for table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
-
---
--- Indexes for table `pma__table_coords`
---
-ALTER TABLE `pma__table_coords`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
-
---
--- Indexes for table `pma__table_info`
---
-ALTER TABLE `pma__table_info`
-  ADD PRIMARY KEY (`db_name`,`table_name`);
-
---
--- Indexes for table `pma__table_uiprefs`
---
-ALTER TABLE `pma__table_uiprefs`
-  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
-
---
--- Indexes for table `pma__tracking`
---
-ALTER TABLE `pma__tracking`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
-
---
--- Indexes for table `pma__userconfig`
---
-ALTER TABLE `pma__userconfig`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `pma__usergroups`
---
-ALTER TABLE `pma__usergroups`
-  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
-
---
--- Indexes for table `pma__users`
---
-ALTER TABLE `pma__users`
-  ADD PRIMARY KEY (`username`,`usergroup`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `pma__history`
---
-ALTER TABLE `pma__history`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  MODIFY `page_nr` int UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Database: `test`
 --
@@ -532,13 +394,16 @@ USE `wenote`;
 -- Table structure for table `module`
 --
 
-CREATE TABLE `module` (
-  `mid` int NOT NULL,
+DROP TABLE IF EXISTS `module`;
+CREATE TABLE IF NOT EXISTS `module` (
+  `mid` int NOT NULL AUTO_INCREMENT,
   `mod_no` int DEFAULT NULL,
   `notes_link` text,
   `impques_file` text,
-  `sid` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `sid` int DEFAULT NULL,
+  PRIMARY KEY (`mid`),
+  KEY `siid` (`sid`)
+) ENGINE=MyISAM AUTO_INCREMENT=2046 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `module`
@@ -597,10 +462,32 @@ INSERT INTO `module` (`mid`, `mod_no`, `notes_link`, `impques_file`, `sid`) VALU
 -- Table structure for table `mod_vid`
 --
 
-CREATE TABLE `mod_vid` (
+DROP TABLE IF EXISTS `mod_vid`;
+CREATE TABLE IF NOT EXISTS `mod_vid` (
   `mid` int DEFAULT NULL,
-  `vid` int DEFAULT NULL
+  `vid` int DEFAULT NULL,
+  `sid` int DEFAULT NULL,
+  `mod_no` int DEFAULT NULL,
+  KEY `fk9` (`sid`),
+  KEY `miiid` (`mid`),
+  KEY `viiid` (`vid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `mod_vid`
+--
+
+INSERT INTO `mod_vid` (`mid`, `vid`, `sid`, `mod_no`) VALUES
+(2000, 3000, 1000, 1),
+(2001, 3001, 1000, 2),
+(2002, 3002, 1000, 3),
+(2003, 3003, 1000, 4),
+(2004, 3004, 1000, 5),
+(2005, 3005, 1001, 1),
+(2006, 3006, 1001, 2),
+(2007, 3007, 1001, 3),
+(2008, 3008, 1001, 4),
+(2009, 3009, 1001, 5);
 
 -- --------------------------------------------------------
 
@@ -608,13 +495,16 @@ CREATE TABLE `mod_vid` (
 -- Table structure for table `pyq`
 --
 
-CREATE TABLE `pyq` (
-  `pid` int NOT NULL,
+DROP TABLE IF EXISTS `pyq`;
+CREATE TABLE IF NOT EXISTS `pyq` (
+  `pid` int NOT NULL AUTO_INCREMENT,
   `month` varchar(10) DEFAULT NULL,
   `year` year DEFAULT NULL,
   `test_paper` text,
-  `sid` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `sid` int DEFAULT NULL,
+  PRIMARY KEY (`pid`),
+  KEY `siiid` (`sid`)
+) ENGINE=MyISAM AUTO_INCREMENT=4001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `pyq`
@@ -638,14 +528,18 @@ INSERT INTO `pyq` (`pid`, `month`, `year`, `test_paper`, `sid`) VALUES
 -- Table structure for table `subject`
 --
 
-CREATE TABLE `subject` (
-  `sid` int NOT NULL,
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `sid` int NOT NULL AUTO_INCREMENT,
   `sub_code` varchar(7) DEFAULT NULL,
   `scheme` varchar(4) NOT NULL,
   `study_hours` int DEFAULT (40),
   `marks_max` int DEFAULT (100),
-  `uid` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `uid` int DEFAULT NULL,
+  PRIMARY KEY (`sid`),
+  UNIQUE KEY `sub_code` (`sub_code`),
+  KEY `uiid` (`uid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1009 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `subject`
@@ -668,16 +562,19 @@ INSERT INTO `subject` (`sid`, `sub_code`, `scheme`, `study_hours`, `marks_max`, 
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `uid` int NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `uid` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `fname` varchar(50) DEFAULT NULL,
   `lname` varchar(50) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `dob` varchar(10) NOT NULL,
   `phone` varchar(10) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `password` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
@@ -691,8 +588,7 @@ INSERT INTO `user` (`uid`, `username`, `fname`, `lname`, `email`, `dob`, `phone`
 (5, 'golu', 'golu', 'molu', 'golu@gmail.com', '2003-02-13', '9801094555', 'golu'),
 (6, 'pappu', 'pappu', 'singhania', 'pappu@gmail.com', '1995-07-29', '9801094555', 'pappu'),
 (7, 'ramu', 'ramu', 'domar', 'ramu@gmail.com', '1996-11-10', '9801094555', 'ramu'),
-(8, 'rakesh', 'rakesh', 'khuranna', 'rakesh@gmail.com', '1999-05-21', '997141715', 'rakesh'),
-(9, 'gopal', 'gopal', 'aiyar', 'gopal@gmail.com', '2000-06-22', '9977141717', 'gopal');
+(8, 'rakesh', 'rakesh', 'khuranna', 'rakesh@gmail.com', '1999-05-21', '997141715', 'rakesh');
 
 -- --------------------------------------------------------
 
@@ -700,15 +596,18 @@ INSERT INTO `user` (`uid`, `username`, `fname`, `lname`, `email`, `dob`, `phone`
 -- Table structure for table `videos`
 --
 
-CREATE TABLE `videos` (
-  `vid` int NOT NULL,
+DROP TABLE IF EXISTS `videos`;
+CREATE TABLE IF NOT EXISTS `videos` (
+  `vid` int NOT NULL AUTO_INCREMENT,
   `vid_name` varchar(200) DEFAULT NULL,
   `vid_type` varchar(50) DEFAULT NULL,
   `vid_link` text,
   `vid_length` int DEFAULT NULL,
   `sid` int DEFAULT NULL,
-  `mod_no` int DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `mod_no` int DEFAULT NULL,
+  PRIMARY KEY (`vid`),
+  KEY `fk1` (`sid`)
+) ENGINE=MyISAM AUTO_INCREMENT=3014 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `videos`
@@ -724,88 +623,11 @@ INSERT INTO `videos` (`vid`, `vid_name`, `vid_type`, `vid_link`, `vid_length`, `
 (3006, 'VTU COMPUTER NETWORKS & SECURITY (18CS52) [Transport Layer - Overview] (M2 L1)', 'lecture', 'https://www.youtube.com/watch?v=RGlerBYUlDM&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=21', 19, 1001, 2),
 (3007, 'VTU COMPUTER NETWORKS AND SECURITY(18CS52)[Inside Router](M3 L1)', 'lecture', 'https://www.youtube.com/watch?v=Ja-MF1_W9rk&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=45', 22, 1001, 3),
 (3008, 'VTU COMPUTER NETWORKS AND SECURITY (18CS52) [Network Security : Overview] (M4 L1)', 'lecture', 'https://www.youtube.com/watch?v=yd069dv0Lkc&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=68', 20, 1001, 4),
-(3009, 'VTU CNS(18CS52)Multimedia Networking - Properties of Video/Audio](M5 L1)', 'lecture', 'https://www.youtube.com/watch?v=026NxTmbAtM&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=58', 34, 1001, 5);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `module`
---
-ALTER TABLE `module`
-  ADD PRIMARY KEY (`mid`),
-  ADD KEY `siid` (`sid`);
-
---
--- Indexes for table `mod_vid`
---
-ALTER TABLE `mod_vid`
-  ADD KEY `miiid` (`mid`),
-  ADD KEY `viiid` (`vid`);
-
---
--- Indexes for table `pyq`
---
-ALTER TABLE `pyq`
-  ADD PRIMARY KEY (`pid`),
-  ADD KEY `siiid` (`sid`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`sid`),
-  ADD UNIQUE KEY `sub_code` (`sub_code`),
-  ADD KEY `uiid` (`uid`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `videos`
---
-ALTER TABLE `videos`
-  ADD PRIMARY KEY (`vid`),
-  ADD KEY `fk1` (`sid`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `module`
---
-ALTER TABLE `module`
-  MODIFY `mid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2046;
-
---
--- AUTO_INCREMENT for table `pyq`
---
-ALTER TABLE `pyq`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4001;
-
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `sid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `uid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `videos`
---
-ALTER TABLE `videos`
-  MODIFY `vid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3010;
+(3009, 'VTU CNS(18CS52)Multimedia Networking - Properties of Video/Audio](M5 L1)', 'lecture', 'https://www.youtube.com/watch?v=026NxTmbAtM&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=58', 34, 1001, 5),
+(3010, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
+(3011, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
+(3012, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
+(3013, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

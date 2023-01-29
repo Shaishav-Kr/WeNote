@@ -9,22 +9,22 @@ if (!$conn) {
 } else {
     echo "connected to db";
 
-    $sql = "INSERT INTO `videos`(`vid_name`, `vid_type`, `vid_link`,`vid_length`,`sid`,`mod_no`) VALUES ('$_POST[vid_name]','$_POST[vid_type]','$_POST[vid_link]','$_POST[vid_length]','$_POST[sid]','$_POST[mod_no]');";
+    $sql = "delete from videos where sid='$_POST[sid]' and mod_no='$_POST[mod_no]';";
 
     echo "<br><br>";
     // echo $sql;
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>
-                alert('Video added successfully');
-                window.location.href='admin_add_videos.php';
-                </script>";
+				alert('Lecture deleted successfully');
+				window.location.href='admin_delete_videos.php';
+				</script>";
     } else {
         echo "error";
         //die();
         echo "<script>
-				alert('Insertion failed');
-				window.location.href='admin_add_videos.php';
+				alert('Deletion failed');
+				window.location.href='admin_delete_videos.php';
 				</script>";
     }
 }

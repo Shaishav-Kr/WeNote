@@ -39,6 +39,10 @@
                     <th><a href='admin_delete_module.php'>link</a></th>
                 </tr>
                 <tr>
+                    <th>DELETE VIDEOS AND LECTURES</th>
+                    <th><a href='admin_delete_videos.php'>link</a></th>
+                </tr>
+                <tr>
                     <th>DELETE PREVIOUS YEAR PAPER</th>
                     <th><a href='admin_delete_pyq.php'>link</a></th>
                 </tr>

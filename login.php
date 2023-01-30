@@ -27,6 +27,9 @@
             <br>
             <br>
             New here? <a href='signup.php'>SignUp</a>
+            <br>
+            <br>
+            <a href="forgot_password.php">Forgot password?</a>
         </form>
     </body>
 </center>

@@ -17,7 +17,7 @@
     if (!$conn) {
         die('Could not Connect MySql:' . mysql_error());
     } else {
-        $sql = "select mod_no,notes_link,impques_file from module where sid='$_POST[sid]'";
+        $sql = "select mod_no,notes_link,impques_file from module where sid='$_POST[sid]' and mod_no='$_POST[mod_no]'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

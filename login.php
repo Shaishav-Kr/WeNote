@@ -9,8 +9,9 @@
 
     <body>
         <form action='login_p.php' method='post'>
-            <h1> LOGIN-PAGE </h1>
+            <h1> WENOTE-Notes Management System</h1>
             <hr>
+            <h2>LOGIN</h2>
             <br>
             <table border=1>
                 <tr>                    

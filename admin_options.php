@@ -12,57 +12,24 @@
             <h1> HELLO ADMIN! </h1>
             <hr>
             <br>
-            <table border=1>
-                <h2>MAKE MODIFICATIONS</h2>
-                <tr>
-                    <th>INSERT MODULE NOTES</th>
-                    <th><a href='admin_modules.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>INSERT PREVIOUS YEAR QUESTIONS</th>
-                    <th><a href='admin_pyq.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>INSERT VIDEOS AND LECTURES</th>
-                    <th><a href='admin_add_videos.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>DELETE USER</th>
-                    <th><a href='admin_delete_user.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>DELETE SUBJECT</th>
-                    <th><a href='admin_delete_subject.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>DELETE NOTES AND IMPORTANT QUESTIONS</th>
-                    <th><a href='admin_delete_module.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>DELETE VIDEOS AND LECTURES</th>
-                    <th><a href='admin_delete_videos.php'>link</a></th>
-                </tr>
-                <tr>
-                    <th>DELETE PREVIOUS YEAR PAPER</th>
-                    <th><a href='admin_delete_pyq.php'>link</a></th>
-                </tr>
-            </table>
-            <br>
-            <h2>VIEW MODIFICATIONS</h2>
+            <h2>VIEW-MODIFY-DATA</h2>
             <table border=1>
                 <tr>
-                    <th>MODULE NOTES</th>
-                    <th><a href='module.php'>link</a></th>
+                    <th><a href='admin_users.php'>USERS</a></th>
                 </tr>
                 <tr>
-                    <th>PREVIOUS YEAR QUESTIONS</th>
-                    <th><a href='pyq.php'>link</a></th>
+                    <th><a href='admin_subjects.php'>SUBJECTS</a></th>
                 </tr>
                 <tr>
-                    <th>VIDEOS AND LECTURES</th>
-                    <th><a href='videos.php'>link</a></th>
+                    <th><a href='admin_modules.php'>MODULES</a></th>
                 </tr>
-            </table>
+                <tr>
+                    <th><a href='admin_pyq.php'>PREVIOUS YEAR QUESTIONS</a></th>
+                </tr>
+                <tr>
+                    <th><a href='admin_videos.php'>VIDEOS AND LECTURES</a></th>
+                </tr>
+            </TABLE>
             <br>
             <a href='logout.php'>logout</a>
             <br>

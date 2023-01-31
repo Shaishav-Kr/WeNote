@@ -17,7 +17,7 @@ include("auth.php");
             <p><a href="admin_options.php">Admin options</a>
                 | <a href="admin_insert_user.php">Insert New User</a>
                 | <a href="logout.php">Logout</a></p>
-            <table border="1" >
+            <table border="1">
                 <thead>
                     <tr>
                         <th><strong>UID</strong></th>
@@ -36,7 +36,8 @@ include("auth.php");
                     <?php
                     $sel_query = "Select * from user;";
                     $result = mysqli_query($conn, $sel_query);
-                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
                         <tr>
                             <td align="center">
                                 <?php echo $row["uid"]; ?>
@@ -63,10 +64,10 @@ include("auth.php");
                                 <?php echo $row["phone"]; ?>
                             </td>
                             <td align="center">
-                                <a href="edit.php?id=<?php echo $row["uid"]; ?>">Edit</a>
+                                <a href="admin_update_user.php?uid=<?php echo $row["uid"]; ?>">Edit</a>
                             </td>
                             <td align="center">
-                                <a href="delete.php?id=<?php echo $row["uid"]; ?>">Delete</a>
+                                <a href="admin_delete_user.php?uid=<?php echo $row["uid"]; ?>">Delete</a>
                             </td>
                         </tr>
                         <?php

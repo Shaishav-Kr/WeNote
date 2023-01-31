@@ -14,7 +14,7 @@ include("auth.php");
         <form method="post">
             <h1>View USERS</h1>
             <hr>
-            <p><a href="admin_option.php">Admin options</a>
+            <p><a href="admin_options.php">Admin options</a>
                 | <a href="admin_insert_user.php">Insert New User</a>
                 | <a href="logout.php">Logout</a></p>
             <table border="1" >

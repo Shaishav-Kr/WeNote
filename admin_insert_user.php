@@ -3,17 +3,28 @@ require('db.php');
 include("auth.php");
 $status = "";
 if (isset($_POST['new']) && $_POST['new'] == 1) {
-    $trn_date = date("Y-m-d H:i:s");
-    $name = $_REQUEST['name'];
-    $age = $_REQUEST['age'];
-    $submittedby = $_SESSION["username"];
-    $ins_query = "insert into new_record
-    (`trn_date`,`name`,`age`,`submittedby`)values
-    ('$trn_date','$name','$age','$submittedby')";
-    mysqli_query($conn, $ins_query)
-        or die(mysql_error());
-    $status = "New Record Inserted Successfully.
-    </br></br><a href='view.php'>View Inserted Record</a>";
+    $fname = $_REQUEST['fname'];
+    $lname = $_REQUEST['lname'];
+    $username = $_REQUEST['username'];
+    $email = $_REQUEST['email'];
+    $password = $_REQUEST['password'];
+    $dob = $_REQUEST['dob'];
+    $phone = $_REQUEST['phone'];
+
+    $sql = "INSERT INTO `user`(`username`, `fname`, `lname`, `email`, `dob`, `phone`, `password`) VALUES ('$username','$fname','$lname','$email','$dob','$phone','$password')";
+    if ($conn->query($sql) === true) {
+        echo "<script>
+        alert('User added successfully');
+        window.location.href='admin_users.php';
+        </script>";
+    }
+    else{
+        echo "error";
+        echo "<script>
+				alert('Insertion failed');
+				window.location.href='admin_insert_users.php';
+				</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -26,20 +37,48 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
 
     <body>
         <form method="post">
+            <h1>Insert New User</h1>
+            <hr>
+
             <p><a href="admin_options.php">Admin options</a>
                 | <a href="admin_users.php">View Users</a>
                 | <a href="logout.php">Logout</a></p>
             <div>
-                <h1>Insert New User</h1>
-                <form name="form" method="post" action="">
+                <form name="post" method="post" action="admin_insert_user.php">
                     <input type="hidden" name="new" value="1" />
-                    <p><input type="text" name="name" placeholder="Enter Name" required /></p>
-                    <p><input type="text" name="age" placeholder="Enter Age" required /></p>
-                    <p><input name="submit" type="submit" value="Submit" /></p>
+                    <table border="1">
+                        <tr>
+                            <th>ENTER FIRST NAME</th>
+                            <td><input type="text" id="fname" name="fname" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER LAST NAME</th>
+                            <td><input type="text" id="lname" name="lname" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER USERNAME</th>
+                            <td><input type="text" id="username" name="username" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER EMAIL</th>
+                            <td><input type="email" id="email" name="email" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER PASSWORD</th>
+                            <td><input type="password" id="password" name="password" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER DATE OF BIRTH</th>
+                            <td><input type="date" id="dob" name="dob" required></td>
+                        </tr>
+                        <tr>
+                            <th>ENTER PHONE NUMBER</th>
+                            <td><input type="number" id="phone" name="phone" required></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <input type="submit" id="submit" name="submit">
                 </form>
-                <p style="color:#FF0000;">
-                    <?php echo $status; ?>
-                </p>
             </div>
         </form>
     </body>

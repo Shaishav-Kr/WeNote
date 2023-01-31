@@ -9,7 +9,7 @@
 
     <body>
         <form action='login_p.php' method='post'>
-            <h1> WENOTE-Notes Management System</h1>
+            <h1> WENOTE</h1>
             <hr>
             <h2>LOGIN</h2>
             <br>

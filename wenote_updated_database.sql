@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 29, 2023 at 08:37 AM
+-- Generation Time: Jan 31, 2023 at 02:16 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"wenote\",\"table\":\"mod_vid\"},{\"db\":\"wenote\",\"table\":\"module\"},{\"db\":\"wenote\",\"table\":\"videos\"},{\"db\":\"wenote\",\"table\":\"pyq\"},{\"db\":\"wenote\",\"table\":\"subject\"},{\"db\":\"wenote\",\"table\":\"user\"},{\"db\":\"wenote\",\"table\":\"video\"},{\"db\":\"wenote\",\"table\":\"test\"},{\"db\":\"wenote\",\"table\":\"admin\"},{\"db\":\"course_selection\",\"table\":\"user\"}]');
+('root', '[{\"db\":\"wenote\",\"table\":\"user\"},{\"db\":\"course_selection\",\"table\":\"user\"},{\"db\":\"wenote\",\"table\":\"module\"},{\"db\":\"wenote\",\"table\":\"videos\"},{\"db\":\"wenote\",\"table\":\"mod_vid\"},{\"db\":\"wenote\",\"table\":\"pyq\"},{\"db\":\"wenote\",\"table\":\"subject\"},{\"db\":\"wenote\",\"table\":\"video\"},{\"db\":\"wenote\",\"table\":\"test\"},{\"db\":\"wenote\",\"table\":\"admin\"}]');
 
 -- --------------------------------------------------------
 
@@ -349,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-01-29 08:36:56', '{\"Console\\/Mode\":\"collapse\",\"Console\\/Height\":105.99419}');
+('root', '2023-01-31 14:16:30', '{\"Console\\/Mode\":\"collapse\",\"Console\\/Height\":105.99419}');
 
 -- --------------------------------------------------------
 
@@ -403,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `module` (
   `sid` int DEFAULT NULL,
   PRIMARY KEY (`mid`),
   KEY `siid` (`sid`)
-) ENGINE=MyISAM AUTO_INCREMENT=2046 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2047 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `module`
@@ -454,7 +454,8 @@ INSERT INTO `module` (`mid`, `mod_no`, `notes_link`, `impques_file`, `sid`) VALU
 (2041, 2, 'https://drive.google.com/file/d/1EVA-8wzPckFnovq3m4j4hyinGwbdiKVR/view', 'https://drive.google.com/file/d/18L64VX_zaRC_QsH1mdkYfI61n083fgoc/view', 1008),
 (2042, 3, 'https://drive.google.com/file/d/1EVA-8wzPckFnovq3m4j4hyinGwbdiKVR/view', 'https://drive.google.com/file/d/18L64VX_zaRC_QsH1mdkYfI61n083fgoc/view', 1008),
 (2043, 4, 'https://drive.google.com/file/d/1EVA-8wzPckFnovq3m4j4hyinGwbdiKVR/view', 'https://drive.google.com/file/d/18L64VX_zaRC_QsH1mdkYfI61n083fgoc/view', 1008),
-(2044, 5, 'https://drive.google.com/file/d/1EVA-8wzPckFnovq3m4j4hyinGwbdiKVR/view', 'https://drive.google.com/file/d/18L64VX_zaRC_QsH1mdkYfI61n083fgoc/view', 1008);
+(2044, 5, 'https://drive.google.com/file/d/1EVA-8wzPckFnovq3m4j4hyinGwbdiKVR/view', 'https://drive.google.com/file/d/18L64VX_zaRC_QsH1mdkYfI61n083fgoc/view', 1008),
+(2046, 2, 'www.google.com', 'www.google.com', 1008);
 
 -- --------------------------------------------------------
 
@@ -574,21 +575,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`uid`, `username`, `fname`, `lname`, `email`, `dob`, `phone`, `password`) VALUES
-(1, 'abcd', 'abcd', 'abcd', 'abcd@gmail.com', '2023-01-12', '9977141714', 'abcd'),
+(1, 'abcde', 'abcd', 'abcd', 'abcd@gmail.com', '2023-01-12', '5421365985', 'abcd'),
 (2, 'shaishav', 'shaishav', 'shaishav', 'shaishavpatna@gmail.com', '2000-04-29', '9801094555', 'shaishav'),
 (3, 'monu', 'monu', 'kumar', 'monu@gmail.com', '1999-09-08', '4637486948', 'monu'),
 (4, 'sonu', 'sonu', 'chotala', 'sonu@gmail.com', '2002-02-05', '9801094555', 'sonu'),
 (5, 'golu', 'golu', 'molu', 'golu@gmail.com', '2003-02-13', '9801094555', 'golu'),
 (6, 'pappu', 'pappu', 'singhania', 'pappu@gmail.com', '1995-07-29', '9801094555', 'pappu'),
 (7, 'ramu', 'ramu', 'domar', 'ramu@gmail.com', '1996-11-10', '9801094555', 'ramu'),
-(8, 'rakesh', 'rakesh', 'khuranna', 'rakesh@gmail.com', '1999-05-21', '997141715', 'rakesh');
+(8, 'rakesh', 'rakesh', 'khuranna', 'rakesh@gmail.com', '1999-05-21', '997141715', 'rakesh'),
+(10, 'satwik', 'satwik', 'patil', 'satwik@gmail.com', '2001-12-25', '9741402740', 'satwik'),
+(12, 'ranjana', 'ranjana', 'ranjana', 'ranjana@gmail.com', '2002-04-27', '7687564534', 'ranjana'),
+(14, 'aarush', 'arushaa', 'verma', 'aarush@gmail.com', '2002-06-05', '9568745123', 'aarush'),
+(15, 'bhavik', 'bhavik', 'bardiaa', 'bhavik@gmail.com', '2001-10-17', '9875461235', 'bhavik');
 
 -- --------------------------------------------------------
 
@@ -607,14 +612,13 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `mod_no` int DEFAULT NULL,
   PRIMARY KEY (`vid`),
   KEY `fk1` (`sid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3014 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3018 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `videos`
 --
 
 INSERT INTO `videos` (`vid`, `vid_name`, `vid_type`, `vid_link`, `vid_length`, `sid`, `mod_no`) VALUES
-(3000, 'VTU ME (18CS51) NATURE,CHARACTERSITICS AND FUNCTIONAL AREAS OF MANAGEMENT (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=5bROam5Epy4&list=PLon7I2JOCP9UJ7Ow-4KyUWgXONs0LThRF&index=2', 30, 1000, 1),
 (3001, 'VTU ME (18CS51) MANAGEMENT AND ENTREPRENEURSHIP [DIRECTING] (M2 L1)', 'lecture', 'https://www.youtube.com/watch?v=uXYH7iIogYY&list=PLon7I2JOCP9UJ7Ow-4KyUWgXONs0LThRF&index=8', 13, 1000, 2),
 (3002, 'VTU ME (18CS51) MANAGEMENT & ENTREPRENEURSHIP [ENTREPRENEUR- FUNCTIONS & CHARACTERISTICS] (M3 L1)', 'lecture', 'https://www.youtube.com/watch?v=ij_nnyuvEec&list=PLon7I2JOCP9UJ7Ow-4KyUWgXONs0LThRF&index=15', 19, 1000, 3),
 (3003, 'VTU ME (18CS51) MANAGEMENT AND ENTREPRENEURSHIP [PROJECT MANAGEMENT] (M4 L1)', 'lecture', 'https://www.youtube.com/watch?v=Q-cOc4pTK9I&list=PLon7I2JOCP9UJ7Ow-4KyUWgXONs0LThRF&index=20', 19, 1000, 4),
@@ -624,10 +628,8 @@ INSERT INTO `videos` (`vid`, `vid_name`, `vid_type`, `vid_link`, `vid_length`, `
 (3007, 'VTU COMPUTER NETWORKS AND SECURITY(18CS52)[Inside Router](M3 L1)', 'lecture', 'https://www.youtube.com/watch?v=Ja-MF1_W9rk&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=45', 22, 1001, 3),
 (3008, 'VTU COMPUTER NETWORKS AND SECURITY (18CS52) [Network Security : Overview] (M4 L1)', 'lecture', 'https://www.youtube.com/watch?v=yd069dv0Lkc&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=68', 20, 1001, 4),
 (3009, 'VTU CNS(18CS52)Multimedia Networking - Properties of Video/Audio](M5 L1)', 'lecture', 'https://www.youtube.com/watch?v=026NxTmbAtM&list=PLon7I2JOCP9XY1blHcRRX54UkZB4zjuiU&index=58', 34, 1001, 5),
-(3010, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
-(3011, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
-(3012, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1),
-(3013, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1);
+(3017, 'VTU ME (18CS51) NATURE,CHARACTERSITICS AND FUNCTIONAL AREAS OF MANAGEMENT (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=5bROam5Epy4&list=PLon7I2JOCP9UJ7Ow-4KyUWgXONs0LThRF&index=1', 31, 1000, 1),
+(3015, 'VTU DBMS (18CS53) DATABASE MANAGEMENT SYSTEM[DATABASES AND DATABASE USERS] (M1 L1)', 'lecture', 'https://www.youtube.com/watch?v=lPmMepN27VI&list=PLon7I2JOCP9VanxHVv1YyoRg98PiL7ZWc&index=1', 23, 1002, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

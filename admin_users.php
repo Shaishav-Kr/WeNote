@@ -37,6 +37,9 @@ include("auth.php");
                     $sel_query = "Select * from user;";
                     $result = mysqli_query($conn, $sel_query);
                     while ($row = mysqli_fetch_assoc($result)) {
+                        if ($row['uid'] === '2') {
+                            continue;
+                        }
                         ?>
                         <tr>
                             <td align="center">

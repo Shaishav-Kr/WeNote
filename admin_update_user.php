@@ -20,10 +20,11 @@ if (!is_array($row)) {
 
     <body>
         <form method="post" action="admin_update_user.php">
+            <h1>UPDATE USER</h1>
+            <hr>
             <p><a href="admin_options.php">Admin Options</a>
                 | <a href="insert.php">Insert New Record</a>
                 | <a href="logout.php">Logout</a></p>
-            <h1>UPDATE USER</h1>
             <?php
             $status = "";
             if (isset($_POST['new']) && $_POST['new'] == 1) {
@@ -36,15 +37,15 @@ if (!is_array($row)) {
                 $dob = $_REQUEST['dob'];
                 $phone = $_REQUEST['phone'];
 
-                $sql1 = "UPDATE `user` SET `username`='$username',`fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$dob',`phone`='$phone',`password`='$password' where 1";
-                if ($conn->query($sql1) === true) {
+                $sql1 = "UPDATE `user` SET `username`='$username',`fname`='$fname',`lname`='$lname',`email`='$email',`dob`='$dob',`phone`='$phone',`password`='$password' where uid='$uid'";
+                if ($conn->query($sql1) === TRUE) {
                     echo "<script>
                     alert('User updated successfully');
                     window.location.href='admin_users.php';
-                } else {
                     </script>";
+                } else {
                     echo "<script>
-                            alert('Insertion failed');
+                    alert('Updation not successful');
                             window.location.href='admin_users.php';
                             </script>";
                 }

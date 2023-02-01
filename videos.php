@@ -31,7 +31,7 @@
             <a href="options.php">Go to Options page!</a>
             <br>
             <h4> SUBJECT CODE WITH ID'S </h4>
-            <table border="1">
+            <!-- <table border="1">
                 <tr>
                     <th>SUBJECT CODE</th>
                     <th>SUBJECT ID</th>
@@ -82,8 +82,36 @@
                     <td>1008</td>
                     <td>ENVIRONMENTAL STUDIES</td>
                 </tr>
-            </table>
+            </table> -->
         </form>
+        </form>
+        <?php
+        require('db.php');
+        include("auth.php");
+        $sql = "select sid,sub_code from subject";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo "
+            <table border=1>
+        <tr>
+        <th>SUBJECT ID</th>
+        <th>SUBJECT CODE</th>
+        </tr>";
+
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['sid'] . "</td>";
+                echo "<td>" . $row['sub_code'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+
+        $conn->close();
+        ?>
     </body>
 </center>
 

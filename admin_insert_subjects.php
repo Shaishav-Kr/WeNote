@@ -56,15 +56,15 @@ if (isset($_POST['new']) && $_POST['new'] == 1) {
                         </tr>
                         <tr>
                             <th>ENTER STUDY HOURS</th>
-                            <td><input type="text" id="study_hours" name="study_hours" required></td>
+                            <td><input type="text" id="study_hours" name="study_hours" ></td>
                         </tr>
                         <tr>
                             <th>ENTER MAXIMUM MARKS OF SUBJECT</th>
-                            <td><input type="text" id="marks_max" name="marks_max" required></td>
+                            <td><input type="text" id="marks_max" name="marks_max" ></td>
                         </tr>
                         <tr>
                             <th>ENTER USER ID</th>
-                            <td><input type="text" id="uid" name="uid" required></td>
+                            <td><input type="text" id="uid" name="uid" value="2" required></td>
                         </tr>
                     </table>
                     <br>

@@ -3,7 +3,6 @@ require('db.php');
 include("auth.php");
 ?>
 <html>
-<html>
 
 <head>
     <title>View and modify Users</title>
